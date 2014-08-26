@@ -9,5 +9,9 @@
     <string name="edit_item_title">Edit Item Below:</string>
     <string name="save_button_label">Save</string>
     <string name="hello_world">Hello world!</string>
+    <string name="task_priority">Priority:</string>
+    <string name="task_priority_low">Low</string>
+    <string name="task_priority_high">High</string>
+    <string name="task_deadline">Finish By:</string>
 
 </resources>

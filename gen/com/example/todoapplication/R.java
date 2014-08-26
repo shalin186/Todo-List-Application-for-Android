@@ -25,12 +25,18 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080006;
-        public static final int btnAdd=0x7f080004;
-        public static final int btnSave=0x7f080001;
-        public static final int etEditItem=0x7f080002;
-        public static final int etNewItem=0x7f080005;
-        public static final int lvItems=0x7f080003;
+        public static final int action_settings=0x7f08000c;
+        public static final int btnAdd=0x7f08000a;
+        public static final int btnSave=0x7f080003;
+        public static final int editText1=0x7f080008;
+        public static final int etEditItem=0x7f080001;
+        public static final int etNewItem=0x7f08000b;
+        public static final int lvItems=0x7f080009;
+        public static final int radio0=0x7f080005;
+        public static final int radio1=0x7f080006;
+        public static final int radioGroup1=0x7f080004;
+        public static final int textView1=0x7f080002;
+        public static final int textView2=0x7f080007;
         public static final int tvEditItem=0x7f080000;
     }
     public static final class layout {
@@ -49,6 +55,10 @@ public final class R {
         public static final int edit_item_title=0x7f050005;
         public static final int hello_world=0x7f050007;
         public static final int save_button_label=0x7f050006;
+        public static final int task_deadline=0x7f05000b;
+        public static final int task_priority=0x7f050008;
+        public static final int task_priority_high=0x7f05000a;
+        public static final int task_priority_low=0x7f050009;
         public static final int title_activity_edit_item=0x7f050004;
     }
     public static final class style {

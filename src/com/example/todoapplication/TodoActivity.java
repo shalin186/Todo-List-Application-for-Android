@@ -1,6 +1,7 @@
 package com.example.todoapplication;
 
 import android.app.Activity;
+import android.view.ViewGroup;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import org.apache.commons.io.FileUtils;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +20,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class TodoActivity extends Activity {
@@ -27,6 +30,7 @@ public class TodoActivity extends Activity {
     private ArrayAdapter<String> todoAdapter;
     private ListView lvItems;
     private EditText etNewItem; 
+    private boolean flag = false;
     
 	
 	@Override
@@ -36,16 +40,29 @@ public class TodoActivity extends Activity {
         etNewItem = (EditText) findViewById(R.id.etNewItem);
         lvItems = (ListView) findViewById(R.id.lvItems);
         readItems();
-        todoAdapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_list_item_1, todoItems);
+        todoAdapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_list_item_1, todoItems){
+        	@Override
+        	public View getView(int position, View convertView, ViewGroup parent) {
+        	    View view = super.getView(position, convertView, parent);
+        	    TextView text = (TextView) view.findViewById(android.R.id.text1);
+        	    if(flag == true){
+        	      text.setTextColor(Color.GREEN);
+        	      flag = false;
+        	    }   
+        	    return view;
+        	  }
+        	};
         lvItems.setAdapter(todoAdapter);
         setupOnClickListener();
     }
 
 	public void onAddedItem(View v) {
 		String itemText = etNewItem.getText().toString();
-		todoAdapter.add(itemText);
-		etNewItem.setText("");
-		writeItems();
+		if(!(itemText.isEmpty())){
+			todoAdapter.add(itemText);
+			etNewItem.setText("");
+			writeItems();
+		}
 	}
 
 	private void setupOnClickListener() {
@@ -79,7 +96,14 @@ public class TodoActivity extends Activity {
 	  if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
 		  String editedItemName = editItemIntent.getExtras().getString("item_name");
 		  int editedItemPosition = editItemIntent.getExtras().getInt("item_position");
-		  todoItems.set(editedItemPosition, editedItemName);
+
+		  if(editedItemName.isEmpty()){
+			  todoItems.remove(editedItemPosition);
+		  }
+		  else{
+			  flag = true;
+			  todoItems.set(editedItemPosition, editedItemName);  
+		  }
 		  todoAdapter.notifyDataSetChanged();
 		  writeItems();
 	  }
