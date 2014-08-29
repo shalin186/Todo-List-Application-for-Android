@@ -8,7 +8,7 @@ public class Logs {
 
     public static void msg(String msg)
     {
-        Log.d("smehta4", msg);
+        Log.d("codepath", msg);
     }
 
     public  static  void toast(Context c, String msg)
